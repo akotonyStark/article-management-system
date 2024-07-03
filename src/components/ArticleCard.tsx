@@ -8,7 +8,7 @@ type PropTypes = {
 const ArticleCard = ({article} : PropTypes) => {
 
   return (
-    <div key={article.id}>
+    <div key={article.id} className="article">
       <div style={{ fontWeight: 600, marginBottom:10, display: 'flex', alignItems:'center' }}>
     
         <Avatar src={""} bg={"gold"} name={article?.userId}>
@@ -23,7 +23,8 @@ const ArticleCard = ({article} : PropTypes) => {
       </div>
       
       <blockquote>{article?.body}</blockquote>
-      <span> - {article?.userId}</span>
+    
+      <div style={{marginTop:20, fontSize:14, color:'teal'}}> ~ <i><em>{article?.userId}</em></i></div>
     </div>
   );
 };
