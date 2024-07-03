@@ -15,6 +15,12 @@ const Sidebar = () => {
                 <ListIcon />
                 <NavLink to={'/articles'}>Articles</NavLink>
             </ListItem>
+
+            <ListItem>
+                <ListIcon />
+                <NavLink to={'/new-article'}>New Article</NavLink>
+            </ListItem>
+            
         </List>
     )
 }

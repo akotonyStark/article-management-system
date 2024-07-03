@@ -17,7 +17,7 @@ const RootLayout = () => {
         <GridItem  area={"header"} color={"white"} >
           <Navbar/>
         </GridItem>
-        <GridItem  area={"nav"}>
+        <GridItem  area={"nav"} height={'100vh'}>
           <Sidebar/>
         </GridItem>
         <GridItem  area={"main"}>

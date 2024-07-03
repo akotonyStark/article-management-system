@@ -5,6 +5,7 @@ import RootLayout from './layouts/RootLayout'
 import Dashboard from './pages/Dashboard'
 import { ChakraProvider } from '@chakra-ui/react'
 import Articles from './pages/Articles'
+import CreateArticle from './pages/CreateArticle'
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
         <Route index element={<Dashboard />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/articles' element={<Articles />} />
-    </Route>
+        <Route path='/new-article' element={<CreateArticle/>} />
+    </Route> 
     )
   )
 
