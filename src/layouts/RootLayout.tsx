@@ -13,9 +13,6 @@ const RootLayout = () => {
                   "nav footer"`}
      
         gridTemplateColumns={"1fr 5fr"}
-        h="200px"
-        color="blackAlpha.700"
-        fontWeight="bold"
       >
         <GridItem  area={"header"} color={"white"} >
           <Navbar/>
