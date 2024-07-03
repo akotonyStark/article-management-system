@@ -1,8 +1,9 @@
+import { Grid } from "@chakra-ui/react"
 
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <Grid p={4}>Dashboard</Grid>
   )
 }
 
