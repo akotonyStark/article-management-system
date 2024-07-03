@@ -1,11 +1,28 @@
+import { Avatar, AvatarBadge, Text } from "@chakra-ui/react";
 import { Article } from "../pages/Articles";
 
-const ArticleCard = ( props : any) => {
-    const {article} = props
+type PropTypes = {
+    article : Article
+}
+
+const ArticleCard = ({article} : PropTypes) => {
+
   return (
     <div key={article.id}>
-      <p style={{ fontWeight: 600 }}>{article?.title}</p>
-      <blockquote>"{article?.body}"</blockquote>
+      <div style={{ fontWeight: 600, marginBottom:10, display: 'flex', alignItems:'center' }}>
+    
+        <Avatar src={""} bg={"gold"} name={article?.userId}>
+          <AvatarBadge width="1.3em" bg={"teal.500"}>
+            <Text fontSize={"small"} color={"white"}>
+              {article.id}
+            </Text>
+          </AvatarBadge>
+        </Avatar>
+       
+        <span style={{marginLeft:10}}>{article?.title.split(' ').slice(0,2).join(' ')}</span>
+      </div>
+      
+      <blockquote>{article?.body}</blockquote>
       <span> - {article?.userId}</span>
     </div>
   );

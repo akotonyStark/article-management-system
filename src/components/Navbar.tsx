@@ -1,6 +1,5 @@
 import {
   Avatar,
-  AvatarBadge,
   Flex,
   Heading,
   HStack,
@@ -16,12 +15,7 @@ const Navbar = () => {
 
       <HStack spacing={"20px"}>
       <Text>Augustine</Text>
-        <Avatar src={""} bg={"gold"} name="Augustine">
-          <AvatarBadge width="1.3em" bg={"teal.500"}>
-            <Text fontSize={"small"} color={"white"}>
-              4
-            </Text>
-          </AvatarBadge>
+        <Avatar src={""} bg={"teal"} name="Augustine Ampofo">
         </Avatar>
       </HStack>
     </Flex>
