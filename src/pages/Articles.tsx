@@ -1,9 +1,11 @@
-import { Grid, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Grid, Heading, SimpleGrid, useDisclosure } from "@chakra-ui/react";
 import { lazy, Suspense, useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Pagination from "../components/Pagination";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import DeleteModal from "../components/DeleteModal";
+import UpdateModal from "../components/UpdateModal";
 
 export type Article = {
   userId: string;
@@ -30,8 +32,11 @@ const Articles = () => {
 
   const {data, isLoading, error} = useGet('articles', "http://localhost:8000/articles")
   const [articles, setArticles] = useState<Article[]>([]);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null)
   const [pageIndex, setpageIndex] = useState<number>(0);
   const [resultsPerPage] = useState<number>(20);
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
 
 
   const totalNumberOfPages = Math.ceil(articles.length / resultsPerPage);
@@ -39,9 +44,7 @@ const Articles = () => {
     resultsPerPage * pageIndex,
     resultsPerPage * pageIndex + resultsPerPage
   );
-  const pages = Array(totalNumberOfPages)
-    .fill(0)
-    .map((item, index) => item + index);
+  const pages = Array(totalNumberOfPages).fill(0).map((item, index) => item + index);
 
 
  useEffect(() => {
@@ -61,6 +64,7 @@ const Articles = () => {
  
   return (
     <Grid p={4}>
+      
       <Heading size={"md"} pb={10}>
         Articles
       </Heading>
@@ -76,11 +80,13 @@ const Articles = () => {
       >
         <Suspense fallback={<Loading />}>
           {visibleArticles?.map((article: Article) => (
-            <ArticleCard key={article?.id} article={article} />
+            <ArticleCard key={article?.id} article={article} onOpen={onOpen} onOpenEdit={onEditOpen} setSelectedArticle={setSelectedArticle}/>
           ))}
         </Suspense>
       </SimpleGrid>
       <Pagination  pages={pages} pageIndex={pageIndex} totalNumberOfPages={totalNumberOfPages} setpageIndex={setpageIndex}/>
+      <DeleteModal isOpen={isOpen} onClose={onClose} articles={articles} setArticles={setArticles} selectedArticle={selectedArticle}/>
+      <UpdateModal isOpen={isEditOpen} onClose={onEditClose} articles={articles} setArticles={setArticles} selectedArticle={selectedArticle}/>
     </Grid>
   );
 };

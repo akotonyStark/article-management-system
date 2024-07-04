@@ -1,7 +1,6 @@
 import { ChatIcon, EditIcon, HamburgerIcon } from "@chakra-ui/icons"
 import { List, ListIcon, ListItem } from "@chakra-ui/react"
 import { NavLink } from "react-router-dom"
-// import { NavLink } from "react-router-dom"
 
 const Sidebar = () => {
     return (
