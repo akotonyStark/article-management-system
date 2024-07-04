@@ -6,12 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import DeleteModal from "../components/DeleteModal";
 import UpdateModal from "../components/UpdateModal";
+import { Tag } from "./CreateArticle";
 
 export type Article = {
   userId: string;
   id: number;
   title: string;
   body: string;
+  dateOfPublication?: any;
+  tags?: Tag[]
 };
 
 const ArticleCard = lazy(() => import("../components/ArticleCard"));
@@ -34,7 +37,7 @@ const Articles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null)
   const [pageIndex, setpageIndex] = useState<number>(0);
-  const [resultsPerPage] = useState<number>(20);
+  const [resultsPerPage] = useState<number>(9);
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose } = useDisclosure()
 
@@ -49,7 +52,8 @@ const Articles = () => {
 
  useEffect(() => {
     if(!isLoading){
-        setArticles(data)
+
+        setArticles(data.reverse())
     }
    
  }, [isLoading])

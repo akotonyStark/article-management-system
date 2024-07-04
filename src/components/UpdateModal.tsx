@@ -19,7 +19,9 @@ import { Article } from "../pages/Articles";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import * as Yup from "yup";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Tag, tags } from "../pages/CreateArticle";
+import { MultiSelect } from "react-multi-select-component";
 
 type UpdateModalProps = {
   isOpen: boolean;
@@ -28,6 +30,7 @@ type UpdateModalProps = {
   articles: Article[];
   setArticles: any;
 };
+
 
 const useUpdate = (url: string) => {
   return useMutation({
@@ -44,12 +47,12 @@ export default function UpdateModal({
   setArticles,
   selectedArticle
 }: UpdateModalProps) {
-  const { mutate } = useUpdate("http://localhost:8000/articles");
+  const { mutate } = useUpdate(`http://localhost:8000/articles/${selectedArticle?.id}`);
   const toast = useToast();
   const queryClient = useQueryClient()
 
 
- 
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([])
 
   const formik = useFormik({
     initialValues: {
@@ -67,6 +70,8 @@ export default function UpdateModal({
     onSubmit: (values: any) => {
       let article = {
         id: selectedArticle.id,
+        dateOfPublication: new Date().toISOString(),
+        tags: selectedTags,
         ...values,
       };
 
@@ -87,13 +92,14 @@ export default function UpdateModal({
         },
         onError(error) {
           console.log(error);
+          let copy = [...articles]
+          let index = articles.findIndex((article) => article.id == selectedArticle.id)
+          copy[index] = article
+          setArticles(copy)
         },
       });
 
-      let copy = [...articles]
-      let index = articles.findIndex((article) => article.id == selectedArticle.id)
-      copy[index] = article
-      setArticles(copy)
+     
       toast({
         position: "top-right",
         title: "Article updated successfully.",
@@ -111,6 +117,7 @@ export default function UpdateModal({
     formik.setFieldValue("title", selectedArticle?.title)
     formik.setFieldValue("userId", selectedArticle?.userId)
     formik.setFieldValue("body", selectedArticle?.body)
+    setSelectedTags(selectedArticle?.tags)
   }, [selectedArticle])
 
 
@@ -175,6 +182,17 @@ export default function UpdateModal({
                       </span>
                     ) : null}
                   </FormControl>
+
+                  <FormControl>
+                  <FormLabel htmlFor="tags">Tags</FormLabel>
+                  <MultiSelect
+                    options={tags}
+                    value={selectedTags}
+                    onChange={setSelectedTags}
+                    labelledBy="Select"
+                />
+                 
+                </FormControl>
 
                   <Button type="submit" colorScheme="teal">
                     Update

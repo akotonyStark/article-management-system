@@ -1,15 +1,26 @@
-import { Avatar, AvatarBadge, Button, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Flex,
+  Stack,
+} from "@chakra-ui/react";
 import { Article } from "../pages/Articles";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 type PropTypes = {
-  article: Article,
-  onOpen: any,
-  onOpenEdit: any,
-  setSelectedArticle: any
+  article: Article;
+  onOpen: any;
+  onOpenEdit: any;
+  setSelectedArticle: any;
 };
 
-const ArticleCard = ({ article, onOpen, onOpenEdit, setSelectedArticle }: PropTypes) => {
+const ArticleCard = ({
+  article,
+  onOpen,
+  onOpenEdit,
+  setSelectedArticle,
+}: PropTypes) => {
   const handleDelete = () => {
     onOpen();
   };
@@ -19,7 +30,11 @@ const ArticleCard = ({ article, onOpen, onOpenEdit, setSelectedArticle }: PropTy
   };
 
   return (
-    <div key={article.id} className="article" onClick={() => setSelectedArticle(article)}>
+    <div
+      key={article.id}
+      className="article"
+      onClick={() => setSelectedArticle(article)}
+    >
       <div
         style={{
           fontWeight: 600,
@@ -28,21 +43,17 @@ const ArticleCard = ({ article, onOpen, onOpenEdit, setSelectedArticle }: PropTy
           alignItems: "center",
           justifyContent: "space-between",
         }}
-        
       >
-        <div>
-          <Avatar src={""} bg={"gold"} name={article?.userId}>
-            <AvatarBadge width="1.9em" bg={"teal.500"}>
-              <Text fontSize={"small"} color={"white"}>
-                {article.id}
-              </Text>
-            </AvatarBadge>
-          </Avatar>
+        <Flex>
+          <Avatar src={""} bg={"gold"} name={article?.userId}/>
 
-          <span style={{ marginLeft: 10 }}>
-            {article?.title.split(" ").slice(0, 3).join(" ")}
-          </span>
-        </div>
+          <Flex direction={'column'} ml={4}>
+            <span>{article?.title.split(" ").slice(0, 3).join(" ")}</span>
+            <span style={{fontSize:12, fontWeight:300}}>{new Date(article.dateOfPublication).toDateString()}</span>
+          </Flex>
+         
+         
+        </Flex>
 
         <div>
           <Button
@@ -64,6 +75,10 @@ const ArticleCard = ({ article, onOpen, onOpenEdit, setSelectedArticle }: PropTy
 
       <blockquote>{article?.body}</blockquote>
 
+      <Stack direction="row" mt={5} wrap={"wrap"}>
+        {article.tags?.map((tag) =>  <Badge>{tag.label}</Badge>)}
+       
+      </Stack>
       <div style={{ marginTop: 20, fontSize: 14, color: "teal" }}>
         {"~"}
         <i>
