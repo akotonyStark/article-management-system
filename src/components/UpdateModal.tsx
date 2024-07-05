@@ -117,7 +117,7 @@ export default function UpdateModal({
         formik.setFieldValue("title", selectedArticle?.title)
         formik.setFieldValue("userId", selectedArticle?.userId)
         formik.setFieldValue("body", selectedArticle?.body)
-        setSelectedTags(selectedArticle?.tags)
+        setSelectedTags(selectedArticle?.tags || [])
   }, [selectedArticle])
 
 

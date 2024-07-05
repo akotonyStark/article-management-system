@@ -16,13 +16,13 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
-        <Route path="/login" element={<Login />} />
-
         <Route path="/" element={<ProtectedRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/new-article" element={<CreateArticle />} />
         </Route>
+
+        <Route index path="/login" element={<Login />} />
       </Route>
     )
   );
