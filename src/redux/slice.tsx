@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 type User = {
     email: string,
     password: string
+    token?: string
 }
 type AuthState = {
     loggedInUser: User  | null,

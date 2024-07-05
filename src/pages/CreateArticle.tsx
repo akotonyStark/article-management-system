@@ -15,6 +15,7 @@ import axios from 'axios'
 import * as Yup from 'yup';
 import { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
+import { Article } from "./Articles";
 
 
 export type Tag = {
@@ -75,7 +76,7 @@ const CreateArticle = () => {
                     duration: 9000,
                     isClosable: true,
                   })
-                queryClient.setQueryData(['articles'], (oldData: any) => [data, ...oldData])
+                queryClient.setQueryData(['articles'], (oldData: Article[]) => [data, ...oldData])
             },
             onError(error){
                 console.log(error)

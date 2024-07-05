@@ -10,9 +10,9 @@ import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 type PropTypes = {
   article: Article;
-  onOpen: any;
-  onOpenEdit: any;
-  setSelectedArticle: any;
+  onOpen: () =>  void;
+  onOpenEdit: () =>  void;
+  setSelectedArticle: React.Dispatch<React.SetStateAction<Article | null>>;
 };
 
 const ArticleCard = ({
@@ -76,7 +76,7 @@ const ArticleCard = ({
       <blockquote>{article?.body}</blockquote>
 
       <Stack direction="row" mt={5} wrap={"wrap"}>
-        {article.tags?.map((tag) =>  <Badge>{tag.label}</Badge>)}
+        {article.tags?.map((tag) =>  <Badge key={tag.id}>{tag.label}</Badge>)}
        
       </Stack>
       <div style={{ marginTop: 20, fontSize: 14, color: "teal" }}>

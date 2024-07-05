@@ -25,10 +25,10 @@ import { MultiSelect } from "react-multi-select-component";
 
 type UpdateModalProps = {
   isOpen: boolean;
-  onClose: any;
+  onClose: () =>  void;
   selectedArticle: any;
   articles: Article[];
-  setArticles: any;
+  setArticles: React.Dispatch<React.SetStateAction<Article[]>>;
 };
 
 
@@ -36,7 +36,7 @@ const useUpdate = (url: string) => {
   return useMutation({
     //mutationKey: [key],
     mutationFn: (data: Article) =>
-      axios.put(`${url}`, data).then((res) => res.data),
+      axios.put(`${url}`, data).then((res) => res.data)
   });
 };
 
@@ -69,7 +69,7 @@ export default function UpdateModal({
     }),
     onSubmit: (values: any) => {
       let article = {
-        id: selectedArticle.id,
+        id: selectedArticle?.id,
         dateOfPublication: new Date().toISOString(),
         tags: selectedTags,
         ...values,
@@ -85,7 +85,7 @@ export default function UpdateModal({
             duration: 9000,
             isClosable: true,
           });
-          queryClient.setQueryData(["articles"], (oldData: any) => [
+          queryClient.setQueryData(["articles"], (oldData: Article[]) => [
             data,
             ...oldData,
           ]);
@@ -93,7 +93,7 @@ export default function UpdateModal({
         onError(error) {
           console.log(error);
           let copy = [...articles]
-          let index = articles.findIndex((article) => article.id == selectedArticle.id)
+          let index = articles.findIndex((article) => article.id == selectedArticle?.id)
           copy[index] = article
           setArticles(copy)
         },
@@ -114,10 +114,10 @@ export default function UpdateModal({
 
 
   useEffect(() => {
-    formik.setFieldValue("title", selectedArticle?.title)
-    formik.setFieldValue("userId", selectedArticle?.userId)
-    formik.setFieldValue("body", selectedArticle?.body)
-    setSelectedTags(selectedArticle?.tags)
+        formik.setFieldValue("title", selectedArticle?.title)
+        formik.setFieldValue("userId", selectedArticle?.userId)
+        formik.setFieldValue("body", selectedArticle?.body)
+        setSelectedTags(selectedArticle?.tags)
   }, [selectedArticle])
 
 

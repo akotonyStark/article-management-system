@@ -6,9 +6,9 @@ import axios from "axios"
 
 type DeleteModalProps = {
     isOpen: boolean,
-    onClose: any,
+    onClose: () =>  void,
     articles: Article[],
-    setArticles: any
+    setArticles: React.Dispatch<React.SetStateAction<Article[]>>
     selectedArticle: any
 }
 
