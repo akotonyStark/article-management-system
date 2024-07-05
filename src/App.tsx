@@ -17,6 +17,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/">
         <Route path="/" element={<ProtectedRoutes />}>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/new-article" element={<CreateArticle />} />

@@ -7,17 +7,9 @@ import {
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
-import { logout } from "../redux/slice";
-import { useNavigate } from "react-router-dom";
 
-export default function UserAccountPopover({ children }: any) {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
+export default function UserAccountPopover({ children, handleLogout }: any) {
+
   return (
     <Popover placement="bottom" closeOnBlur={false}>
       <PopoverTrigger>{children}</PopoverTrigger>

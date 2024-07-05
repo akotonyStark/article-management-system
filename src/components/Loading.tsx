@@ -1,4 +1,7 @@
-export default function Loading() {
-    return <p><i>Loading...</i></p>;
-  }
-  
+export default function Loading({ message }: { message: string }) {
+  return (
+    <>
+      <p>{message}...</p>
+    </>
+  );
+}

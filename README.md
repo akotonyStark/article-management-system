@@ -5,3 +5,9 @@ json-server --watch src/data/db.json --port 8000
 You do not need to run the command above because in the scripts of the package.json file, I have combined running the app and ther server.
 
 execute the comman `npm run dev` to get started right away with mock server already running
+
+## Running tests
+
+- execute `npm run test` to run all test scripts
+- to view test results in browser instead of the terminal excute `npm run test:ui`
+

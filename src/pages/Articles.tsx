@@ -58,9 +58,6 @@ const Articles = () => {
    
  }, [isLoading])
 
-  if (isLoading) {
-    return <Loading/>
-  }
 
   if (error) {
     return <div>There was an error</div>
@@ -82,7 +79,7 @@ const Articles = () => {
         minH={"80vh"}
         overflow={"auto"}
       >
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Loading message="Fetching data"/>}>
           {visibleArticles?.map((article: Article) => (
             <ArticleCard key={article?.id} article={article} onOpen={onOpen} onOpenEdit={onEditOpen} setSelectedArticle={setSelectedArticle}/>
           ))}
