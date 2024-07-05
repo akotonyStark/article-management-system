@@ -7,7 +7,7 @@ const Sidebar = () => {
         <List color={'white'} background={'#1a202c'} height={'100%'} fontSize={{base:'0.6em', md:'0.8em', lg:'1em'}} spacing={5} p={5} >
             <ListItem>
                 <ListIcon as={HamburgerIcon}/>
-                <NavLink to={'/'}>Dashboard</NavLink>
+                <NavLink to={'/dashboard'}>Dashboard</NavLink>
             </ListItem>
 
             <ListItem>
