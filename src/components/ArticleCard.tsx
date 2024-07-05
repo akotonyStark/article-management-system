@@ -21,6 +21,8 @@ const ArticleCard = ({
   onOpenEdit,
   setSelectedArticle,
 }: PropTypes) => {
+
+  
   const handleDelete = () => {
     onOpen();
   };
@@ -73,7 +75,7 @@ const ArticleCard = ({
         </div>
       </div>
 
-      <blockquote>{article?.body}</blockquote>
+      <blockquote data-testid="article-content">{article?.body}</blockquote>
 
       <Stack direction="row" mt={5} wrap={"wrap"}>
         {article.tags?.map((tag) =>  <Badge key={tag.id}>{tag.label}</Badge>)}

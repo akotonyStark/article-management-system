@@ -81,6 +81,7 @@ const Articles = () => {
       >
         <Suspense fallback={<Loading message="Fetching data"/>}>
           {visibleArticles?.map((article: Article) => (
+            //  <ArticleCard key={article?.id} article={article}/>
             <ArticleCard key={article?.id} article={article} onOpen={onOpen} onOpenEdit={onEditOpen} setSelectedArticle={setSelectedArticle}/>
           ))}
         </Suspense>
