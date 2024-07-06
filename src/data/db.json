@@ -319,27 +319,6 @@
     },
     {
       "userId": "Emily Bronte",
-      "id": "41",
-      "title": "non est facere",
-      "dateOfPublication": "2024-07-04T05:21:57.287Z",
-      "body": "molestias id nostrum\nexcepturi molestiae dolore omnis repellendus quaerat saepe\nconsectetur iste quaerat tenetur asperiores accusamus ex ut\nnam quidem est ducimus sunt debitis saepe"
-    },
-    {
-      "userId": "Emily Bronte",
-      "id": "42",
-      "title": "commodi ullam sint et excepturi error explicabo praesentium voluptas",
-      "dateOfPublication": "2024-07-04T05:21:57.287Z",
-      "body": "odio fugit voluptatum ducimus earum autem est incidunt voluptatem\nodit reiciendis aliquam sunt sequi nulla dolorem\nnon facere repellendus voluptates quia\nratione harum vitae ut"
-    },
-    {
-      "userId": "Emily Bronte",
-      "id": "43",
-      "title": "eligendi iste nostrum consequuntur adipisci praesentium sit beatae perferendis",
-      "dateOfPublication": "01/07/2024",
-      "body": "similique fugit est\nillum et dolorum harum et voluptate eaque quidem\nexercitationem quos nam commodi possimus cum odio nihil nulla\ndolorum exercitationem magnam ex et a et distinctio debitis"
-    },
-    {
-      "userId": "Emily Bronte",
       "id": "44",
       "title": "optio dolor molestias sit",
       "dateOfPublication": "2024-07-04T05:21:57.287Z",
@@ -386,13 +365,6 @@
       "dateOfPublication": "2024-07-04T05:21:57.287Z",
       "title": "repellendus qui recusandae incidunt voluptates tenetur qui omnis exercitationem",
       "body": "error suscipit maxime adipisci consequuntur recusandae\nvoluptas eligendi et est et voluptates\nquia distinctio ab amet quaerat molestiae et vitae\nadipisci impedit sequi nesciunt quis consectetur"
-    },
-    {
-      "userId": "Charles Darwin",
-      "id": "51",
-      "title": "soluta aliquam aperiam consequatur illo quis voluptas",
-      "dateOfPublication": "01/07/2024",
-      "body": "sunt dolores aut doloribus\ndolore doloribus voluptates tempora et\ndoloremque et quo\ncum asperiores sit consectetur dolorem"
     },
     {
       "userId": "Charles Darwin",
@@ -918,7 +890,7 @@
       "body": "Those who do not understand true pain can never understand true peace. We are but men, drawn to act in the name of revenge we deem to be \"justice\". But when we call our vengeance \"justice\", it only breeds more revenge ... forging the first link in the chains of hatred."
     },
     {
-      "id": 152,
+      "id": "152",
       "dateOfPublication": "2024-07-05T14:49:00.245Z",
       "tags": [
         {

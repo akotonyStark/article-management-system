@@ -12,6 +12,7 @@ const Navbar = () => {
   const handleLogout = () => {
     console.log('logging out...')
     dispatch(logout());
+    location.reload()
   };
 
   return (

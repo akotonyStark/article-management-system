@@ -1,3 +1,12 @@
+## Requirements
+
+- Node version 18.20.0
+- json server
+
+## Installing Dependencies
+- `npm install -g json-server` to install json server globally. You can omit the -g flag to install it locally
+- `npm install` to install all dependencies
+
 ## Running local json server
 json-server --watch src/data/db.json --port 8000 
 
