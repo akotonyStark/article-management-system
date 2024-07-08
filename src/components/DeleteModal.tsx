@@ -1,4 +1,4 @@
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react"
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useToast } from "@chakra-ui/react"
 import { Article } from "../pages/Articles"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
@@ -21,13 +21,35 @@ export default function DeleteModal({ isOpen, onClose, selectedArticle, articles
         },
       })
 
+      const toast = useToast();
+
     const handleDelete = () => {
         onClose()
-        mutation.mutate(selectedArticle.id)
-        let copy = [...articles]
-        let index = articles.findIndex((article) => article.id == selectedArticle.id)
-        copy.splice(index, 1)
-        setArticles(copy)
+        //mutation.mutate(selectedArticle.id)
+        mutation.mutate(selectedArticle.id, {
+          onSuccess() {
+            toast({
+              position: "top-right",
+              title: "Article Deleted.",
+              description: "List of articles has been updated",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+            let updated = articles.filter(article => article.id !== selectedArticle.id)
+            setArticles(updated);
+          },
+          onError(error) {
+            toast({
+              position: "top-right",
+              title: "Error. Failed to delete.",
+              description: JSON.stringify(error.message),
+              status: "error",
+              duration: 9000,
+              isClosable: true,       
+            });
+          },
+        });
     }
     return (
       <>

@@ -11,7 +11,7 @@ import {store} from '../../src/redux/store'
 describe("Navbar", () => {
   it("should render the app title in header", () => {
     render(<Provider store={store}><Navbar /></Provider>);
-    screen.debug()
+    // screen.debug()
     const heading =  screen.getByRole('heading')
     expect(heading).toBeInTheDocument()
     expect(screen.getByText(/Article Management System/)).toBeInTheDocument()

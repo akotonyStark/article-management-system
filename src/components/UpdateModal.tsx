@@ -16,7 +16,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Article } from "../pages/Articles";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
@@ -49,7 +49,7 @@ export default function UpdateModal({
 }: UpdateModalProps) {
   const { mutate } = useUpdate(`http://localhost:8000/articles/${selectedArticle?.id}`);
   const toast = useToast();
-  const queryClient = useQueryClient()
+
 
 
   const [selectedTags, setSelectedTags] = useState<Tag[]>([])
@@ -85,28 +85,22 @@ export default function UpdateModal({
             duration: 9000,
             isClosable: true,
           });
-          queryClient.setQueryData(["articles"], (oldData: Article[]) => [
-            data,
-            ...oldData,
-          ]);
+          let updated = [...articles]
+          let index = updated.findIndex(article => article.id == data.id)
+          updated[index] = data
+          setArticles(updated);
         },
         onError(error) {
-          console.log(error);
-          let copy = [...articles]
-          let index = articles.findIndex((article) => article.id == selectedArticle?.id)
-          copy[index] = article
-          setArticles(copy)
+          toast({
+            position: "top-right",
+            title: "Error. Failed to delete.",
+            description: JSON.stringify(error.message),
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+            
+          });
         },
-      });
-
-     
-      toast({
-        position: "top-right",
-        title: "Article updated successfully.",
-        description: "List of articles has been updated with your changes.",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
       });
       onClose()
     },
